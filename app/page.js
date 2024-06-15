@@ -68,9 +68,9 @@ export default function Home() {
         <div className="mx-auto w-full items-center justify-between font-mono text-sm flex flex-col">
           <div className="">
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white rounded p-3"
+              className=" text-white rounded p-3"
               type="button"
-              style={{ width: "auto" }}
+              style={{ width: "auto", border: "1px solid #FFF" }}
               onClick={AuthLine}
             >
               สมัครสมาชิก และ เข้าสู่ระบบ
