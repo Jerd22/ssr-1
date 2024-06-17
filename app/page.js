@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 export default function Home() {
   const router = useRouter();
   const [loading, setLoading] = React.useState(true);
+
   const AuthLine = () => {
     setLoading(true);
     liff
@@ -20,7 +21,8 @@ export default function Home() {
           //const profile = await liff.getProfile();
           //setProfile(profile);
           //console.log(profile);
-          router.push("/member");
+          //router.refresh(); // dirty fix, but it works
+          router.push("/member", { scroll: false });
         } else {
           liff.login();
         }
@@ -32,6 +34,11 @@ export default function Home() {
   };
 
   React.useEffect(() => {
+    liff.init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID }).then(() => {
+      if (liff.isLoggedIn()) {
+        router.push("/member", { scroll: false });
+      }
+    });
     setLoading(false);
   }, []);
 
@@ -43,6 +50,7 @@ export default function Home() {
           alt="Loading..."
           width={32}
           height={32}
+          priority
         />
       </div>
     );
@@ -52,7 +60,7 @@ export default function Home() {
         <Navbar />
         <div className="">
           <Image
-            className="relative mx-auto"
+            className="relative mx-auto  w-auto h-auto"
             src="/logo.png"
             alt="App Logo"
             width={180}

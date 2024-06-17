@@ -11,19 +11,19 @@ export default function Page() {
   const [user, setUser] = useState();
   useEffect(() => {
     function GetLine() {
-      liff
-        .init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID })
-        .then(async function () {
-          if (liff.isLoggedIn()) {
-            await liff.ready;
-            const profile = await liff.getProfile();
-            //console.log(profile);
-            setUser(profile);
-            setLoading(false);
-          } else {
-            router.push("/");
-          }
-        });
+      liff.init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID }).then(async () => {
+        if (liff.isLoggedIn()) {
+          await liff.ready;
+          const profile = await liff.getProfile();
+          //console.log(profile);
+          setUser(profile);
+          setLoading(false);
+        } else {
+          router.refresh(); // dirty fix, but it works
+          router.push("/", { scroll: false });
+          //liff.login();
+        }
+      });
     }
 
     GetLine();
@@ -73,7 +73,7 @@ export default function Page() {
               </a>
             </li>
             <li className="w-full h-12 p-3 hover:bg-gray-400 border">
-              <a href="" className="">
+              <a href="/member/resident" className="">
                 <svg
                   className="w-6 h-6 text-white float-start mx-2"
                   aria-hidden="true"

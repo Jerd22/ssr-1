@@ -15,9 +15,11 @@ const Navbar = () => {
             height={42}
             src="/brand.png"
             className=" relative my-auto mx-1 w-auto h-auto"
-            priority
           />
-          <h5 className=" text-white">หมู่บ้านสิรารมย์พลัส เวลโกรว์</h5>
+          <a href="/" className="">
+            {" "}
+            <h5 className=" text-white">หมู่บ้านสิรารมย์พลัส เวลโกรว์</h5>
+          </a>
           <ul className="hidden md:flex gap-x-6 text-white ml-auto">
             <li>
               <Link href="/member">
