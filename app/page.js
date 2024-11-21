@@ -57,7 +57,7 @@ export default function Home() {
     );
   } else {
     return (
-      <main className="flex-1 min-h-screen top-14 relative w-screen">
+      <main className="flex-1 min-h-screen top-0 relative w-screen">
         <Navbar />
         <div className="">
           <Image

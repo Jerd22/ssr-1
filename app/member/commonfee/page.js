@@ -30,7 +30,6 @@ export default function Page() {
               ค่าส่วนกลางหมู่บ้านจัดสรร สิรารมย์พลัสเวลโกรว์
             </h1>
           </div>
-
           <ImageGallery />
         </div>
       </div>
