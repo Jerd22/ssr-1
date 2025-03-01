@@ -10,10 +10,13 @@ const Navbar = () => {
   const [userMenu, setUserMenu] = React.useState(false);
   const [pageMenu, setPageMenu] = React.useState(false);
 
-  const UserMenu = () => {
-    setUserMenu(!userMenu);
+  const handleMouseEnter = () => {
+    setUserMenu(true);
   };
 
+  const handleMouseLeave = () => {
+    setUserMenu(false);
+  };
   const PageMenu = () => {
     setPageMenu(!pageMenu);
   };
@@ -310,6 +313,7 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
+
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 space-x-2">
               <button
                 type="button"
@@ -351,9 +355,10 @@ const Navbar = () => {
                 id="user-menu-button"
                 onClick={UserMenu}
               >*/}
-              <button
+              <div
                 id="user-menu-button"
-                onClick={UserMenu}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
                 type="button"
                 className="relative rounded-full bg-white p-1 text-gray-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 focus:ring-offset-gray-800"
               >
@@ -393,45 +398,55 @@ const Navbar = () => {
                       alt=""
                     />
                     */}
-              </button>
-
-              {userMenu && (
-                <div
-                  className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="user-menu-button"
-                  tabIndex="-1"
-                >
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700"
-                    role="menuitem"
+                {userMenu && (
+                  <div
+                    className=" top-6 absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="user-menu-button"
                     tabIndex="-1"
-                    id="user-menu-item-0"
                   >
-                    โปรไฟล์
-                  </a>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700"
-                    role="menuitem"
-                    tabIndex="-1"
-                    id="user-menu-item-1"
-                  >
-                    ตั้งค่า
-                  </a>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700"
-                    role="menuitem"
-                    tabIndex="-1"
-                    id="user-menu-item-2"
-                  >
-                    ออกจากระบบ
-                  </a>
-                </div>
-              )}
+                    <ul>
+                      <li>
+                        {" "}
+                        <a
+                          href="#"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-600 hover:text-white"
+                          role="menuitem"
+                          tabIndex="-1"
+                          id="user-menu-item-0"
+                        >
+                          โปรไฟล์
+                        </a>
+                      </li>
+                      <li>
+                        {" "}
+                        <a
+                          href="#"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-600 hover:text-white"
+                          role="menuitem"
+                          tabIndex="-1"
+                          id="user-menu-item-1"
+                        >
+                          ตั้งค่า
+                        </a>
+                      </li>
+                      <li>
+                        {" "}
+                        <a
+                          href="#"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-600 hover:text-white"
+                          role="menuitem"
+                          tabIndex="-1"
+                          id="user-menu-item-2"
+                        >
+                          ออกจากระบบ
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
