@@ -7,6 +7,7 @@ export async function GET() {
   });
 
   try {
+
     await client.connect();
 
     // Choose a name for your database
@@ -29,6 +30,7 @@ export async function GET() {
 }
 
 export async function POST() {
+  
   return Response.json({
     message: `POST method called`,
   });

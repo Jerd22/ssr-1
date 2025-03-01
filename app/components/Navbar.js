@@ -1,14 +1,16 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import liff from "@line/liff";
 //import Logo from "./Logo";
 //import Button from "./Button";
 
 const Navbar = () => {
   const [userMenu, setUserMenu] = React.useState(false);
   const [pageMenu, setPageMenu] = React.useState(false);
+  const [isLoggedIn,setIsLoggedIn] = React.useState(false);
 
   const handleMouseEnter = () => {
     setUserMenu(true);
@@ -21,12 +23,21 @@ const Navbar = () => {
     setPageMenu(!pageMenu);
   };
 
+  useEffect(() => {
+    liff.init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID }).then(() => {
+      if (liff.isLoggedIn()) {
+        setIsLoggedIn(true);
+        var user = liff.getProfile();
+        console.log(user);
+      }
+    });
+
+  },[]);
   const pathname = usePathname();
 
   return (
     <>
-      {/*
-      <nav className="z-10 w-full bg-transparent top-0 py-2 h-14 shadow-sm shadow-white">
+      {/*<nav className="z-10 w-full bg-transparent top-0 py-2 h-14 shadow-sm shadow-white">
         <div className="container mx-auto px-0 h-full">
           <div className="flex justify-between items-center h-full">
             <div className=" relative py-2 my-auto mx-2 w-auto h-auto">
@@ -146,10 +157,11 @@ const Navbar = () => {
             </button>
           </div>
         </div>
-      </nav>
-*/}
+      </nav>*/}
+
       <nav className="z-10 bg-transparent top-0">
         <div className=" px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+          {isLoggedIn?(
           <div className="relative flex items-center justify-between">
             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
               <button
@@ -194,6 +206,7 @@ const Navbar = () => {
                 )}
               </button>
             </div>
+
             <div className="flex flex-1 py-2 items-center justify-center sm:items-stretch sm:justify-start">
               <div className="flex flex-shrink-0 items-center mx-2 my-auto">
                 <Image
@@ -313,6 +326,8 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
+
+            
 
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 space-x-2">
               <button
@@ -448,7 +463,9 @@ const Navbar = () => {
                 )}
               </div>
             </div>
+            
           </div>
+          ):null}
         </div>
 
         <div className="sm:hidden  px-4" id="mobile-menu">

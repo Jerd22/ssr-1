@@ -20,11 +20,11 @@ export default function Home() {
           //await liff.ready;
           //const profile = await liff.getProfile();
           //setProfile(profile);
-          //console.log(profile);
+          console.log(profile);
           //router.refresh(); // dirty fix, but it works
           router.push("/member", { scroll: false });
         } else {
-          liff.login();
+          liff.login({ redirectUri: process.env.NEXT_PUBLIC_LIFF_URI });
         }
       })
       .catch((err) => {
@@ -34,6 +34,7 @@ export default function Home() {
   };
 
   React.useEffect(() => {
+    //console.log(process.env.NEXT_PUBLIC_LIFF_ID);
     liff.init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID }).then(() => {
       if (liff.isLoggedIn()) {
         router.push("/member", { scroll: false });

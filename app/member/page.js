@@ -21,7 +21,7 @@ export default function Page() {
         } else {
           //router.refresh(); // dirty fix, but it works
           //router.push("/", { scroll: false });
-          //liff.login();
+          liff.login();
         }
       });
     }
@@ -45,7 +45,7 @@ export default function Page() {
       <div className="flex-1 min-h-screen relative pt-16 w-screen">
         <div className="w-full h-12 text-center text-white ">
           <h5 className="text-lg">ยินดีต้อนรับ</h5>
-          <p className="">{/*user.displayName*/}</p>
+          <p className="">{user?.displayName}</p>
         </div>
         <div className="w-max mx-auto mt-10 overflow-y-auto bg-transparent text-white rounded p-3">
           <ul className="space-y-1 w-80 p-2">
